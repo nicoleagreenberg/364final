@@ -1,0 +1,8 @@
+<h1>Create your personalized recipe collection</h1>
+
+<form method="POST">
+	{{ form.hidden_tag() }}
+	{{ form.name.label }} {{ form.name() }}
+	{{ form.recipe_picks.label }} {{ form.recipe_picks() }}
+	{{ form.submit.label }}{{ form.submit() }}
+</form>

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+    {{ super() }}
+{% endblock %}
+
+{% block content1 %}
+
+{% if not collections %}
+There are no collections to show.
+
+{% else %}
+
+<ul>
+{% for c in collections %}
+    <li>
+    	<a href="/update/{{ c.name }}">{{ c.name }}</a>
+        <form action="/delete/{{ c.id }}" method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.submit() }}
+        </form>
+    </li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<div>
+{% for message in get_flashed_messages() %}
+<strong>*** {{ message }} ***</strong>
+{% endfor %}
+</div>
+
+{% endblock %}

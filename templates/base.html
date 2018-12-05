@@ -1,0 +1,24 @@
+
+{% block content1 %}
+This is the base template of an application that's a mini recipe search engine.
+{% endblock %}
+<br>
+{% if current_user.is_authenticated %}
+    <a href="{{ url_for('logout') }}">Sign Out {{current_user.username}}</a>
+{% else %}
+    <a href="{{ url_for('login') }}">Sign In</a>
+{% endif %}
+
+<p>------------</p>
+<h3>Navigation</h3>
+<ul>
+    <li><a href="{{ url_for('home')}}">Search another ingredient.</a></li>
+    <li><a href="{{ url_for('all_recipes')}}">See all recipes.</a></li>
+    <li><a href="{{ url_for('all_ingred')}}">See all ingredient searches.</a></li>
+    <li><a href="{{ url_for('create_recipe_collection')}}">Create a recipe collection.</a></li>
+    <li><a href="{{ url_for('all_collections')}}">See all recipe collections.</a></li>
+
+
+</ul>
+
+
