@@ -29,23 +29,25 @@ Routes:
 		/update/<name> = update recipe collection
 
 Forms:
-	Ingredient search 
-	Collection creation 
-	Collection update/delete
+	RegistrationForm
+	LoginForm
+	IngredForm = search an ingredient and get results
+	CollectionCreateForm
+	UpdateRecipeForm = update collection name
 
 Templates:
 	404.html
-	500.html
+	all_collections.html
+	all_ingred.html
+	all_recipes.html
 	base.html
 	login.html
+	form.html
 	register.html
-	search_form.html = ingredient search form
+	create_recipe_collection.html
 	recipe_results.html = displays current recipe results from one search
-	all_ingred.html = displays past searches
-	all_recipes.html = displays past recipe results
-	createcollection.html 
-	see_your_collections.html 
-	updatecollection.html
+	update_info.html
+	
 
 Relationships:
 	one -> many: Ingredient to Recipes
