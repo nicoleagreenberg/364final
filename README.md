@@ -11,17 +11,22 @@ Models:
 
 Routes: 
 	/login 
+	/logout
 	/register
+	/secret
 
 	Can see before login -
 		/ = index route will have the search form on it
-		/recipe_results = get a list of recipes back 
-		/all_recipes = see past recipe results 
+		/recipe_results = get a list of recipes back from a search with hyperlinks to the recipes
+		/all_recipes = see past recipe results
+		/all_ingred = see past ingredient searches
 	
 	Can see after login -
-		/recipe_collections = create personal collection of recipes from any past recipe results
-		/see_your_collections = see ones you’ve created 
-		/edit_collection = delete or update a recipe collection
+		/create_recipe_collection = create personal collection of recipes from any past recipe results, you can only name it something with alpha characters (whitespaces count as not alpha!!! so including whitespaces will not pass validation)
+		/all_collections = see collections you've created. click on collection name to update the name. you can also delete from here 
+
+		/delete/<name> = delete recipe collection
+		/update/<name> = update recipe collection
 
 Forms:
 	Ingredient search 
