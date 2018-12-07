@@ -364,9 +364,7 @@ def delete(name):
 def updateRecipe(name):
 	form = UpdateRecipeForm(request.args)
 	if request.method == 'GET' and form.validate():
-		print ('working')
 		new_name = form.newName.data
-		print (new_name)
 		r = RecipeCollection.query.filter_by(name = name).first()
 		r.name = new_name
 		db.session.commit()
