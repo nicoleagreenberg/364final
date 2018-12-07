@@ -1,4 +1,9 @@
-<form method="POST" action="/update/{{ name }}">
+{% extends 'base.html' %}
+
+{% block content1 %}
+
+
+<form method="GET" action="/update/{{ name }}">
 	Update the name of {{name}}
 	<br>
 	{{ form.hidden_tag() }}
@@ -11,3 +16,5 @@
 {{ message }}
 {% endfor %}
 </div>
+
+{% endblock %}

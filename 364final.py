@@ -360,19 +360,21 @@ def delete(name):
 	flash("The collection " + " ' " + this_collection.name + " '" + " has been successfully deleted")
 	return redirect(url_for("all_collections"))
 
-@app.route('/update/<name>', methods = ['GET','POST'])
+@app.route('/update/<name>', methods = ['GET'])
 @login_required
 def updateRecipe(name):
-	print(name)
-	form = UpdateRecipeForm()
-	if form.validate_on_submit():
+	form = UpdateRecipeForm(request.args)
+	if request.method == 'GET' and form.validate():
+		print ('working')
 		new_name = form.newName.data
+		print (new_name)
 		r = RecipeCollection.query.filter_by(name = name).first()
 		r.name = new_name
 		db.session.commit()
 		flash("Updated name of " + name + " to " + new_name)
 		return redirect(url_for('all_collections'))
-	flash(form.errors)
+	elif len(request.args):
+		flash(form.errors)
 	return render_template('update_info.html', name = name, form=form)
 
 ## Code to run the application...
