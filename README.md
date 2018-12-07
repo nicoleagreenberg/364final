@@ -1,4 +1,4 @@
-#TODO
+Hosted on heroku at: https://final364nicole.herokuapp.com
  
 
 My final project will be an extension of my midterm, where users can search an ingredient and get recipe results back using the Edamam API. If they’re logged in, they can create a recipe collection using the past recipe results, and also update (rename) and delete these. 
