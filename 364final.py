@@ -200,19 +200,19 @@ class IngredForm(FlaskForm):
 
 class CollectionCreateForm(FlaskForm):
 	name = StringField('Collection Name',validators=[Required()])
-	recipe_picks = SelectMultipleField('Recipes to include')
+	recipe_picks = SelectMultipleField('Recipes to include', coerce=int)
 	submit = SubmitField("Create Collection")
 
-def validate_collection_name(self, field):
+	def validate_name(self, field):
 		name_input = field.data
-		if name_input.isalpha():
+		if not name_input.isalpha():
 			raise ValidationError("Your collection name can only be made up of alpha characters, no numbers or symbols.")
 
 class UpdateRecipeForm(FlaskForm):
 	newName = StringField("What is the new name of this collection?", validators=[Required()])
 	submit = SubmitField('Update')
 
-	def validate_updatecollection_name(self, field):
+	def validate_newName(self, field):
 		newName_input = field.data
 		if len(newName_input)<4:
 			raise ValidationError("Your collection name must be greater than 4 characters.")
@@ -333,13 +333,12 @@ def create_recipe_collection():
 		choices.append((r.id, r.title))
 	form.recipe_picks.choices = choices
 	
-	if request.method == 'POST':
+	if request.method == 'POST' and form.validate_on_submit():
 		recipes_selected = form.recipe_picks.data # list?
-		print("RECIPES SELECTED", recipes_selected)
 		recipe_objects = [get_recipe_by_id(int(id)) for id in recipes_selected]
-		print("RECIPES RETURNED", recipe_objects)
 		get_or_create_recipe_collection(db.session,current_user=current_user,name=form.name.data,recipe_list=recipe_objects) 
 		return redirect(url_for('all_collections'))
+	flash(form.errors)
 	return render_template('create_recipe_collection.html',form=form)
 	
 
